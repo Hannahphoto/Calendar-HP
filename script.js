@@ -43,25 +43,43 @@ $(function () {
   // current hour in 24-hour time?
  
 
-var past = document.querySelector(".past");
-var present = document.querySelector(".present");
-var future = document.querySelector(".future");
+// var past = document.querySelector(".past");
+// var present = document.querySelector(".present");
+// var future = document.querySelector(".future");
 
-var pastPresentFutureEL = document.querySelector(".row");
+var pastPresentFutureEL = document.querySelectorAll(".row");
+// var textArea = $("textarea");
+// console.log(pastPresentFutureEL, textArea);
+// for(var i = 9; i < pastPresentFutureEL.length; i++){
+//   var id = pastPresentFutureEL[i].attr("id");
+//   var val = id.split("-")[1];
+//   console.log(val, id);
+//   if(val === hours){
+//   $(textArea[i]).addClass(present);
+//   }
+//   else if(val < hours){
+//   $(textArea[i]).addClass(past); 
+//   }
+//   else {
+//   $(textArea[i]).addClass(future);
+//   };
+//   };
+
 var textArea = $("textarea");
-for(var i = 0; i < pastPresentFutureEL.length; i++){
-  var id = pastPresentFutureEL[i].attr("id");
-  var val = id.split("-")[1];
-  if(val === hours){
-  $(textArea[i].addClass(present));
+console.log(pastPresentFutureEL, textArea);
+for(var i = 9; i <18 ; i++){
+  var id = "#hour-"+ i
+  if(i < hours){
+    $(id).children("textarea").addClass("past");
+    }
+  else if(i == hours){
+  $(id).children("textarea").addClass("present");
   }
-  else if(val < hours);{
-  $(textArea[i].addClass(past)); 
-  }
-  else (val > hours);{
-  $(textArea[i].addClass(future));
+  else {
+  $(id).children("textarea").addClass("future");
   };
-  };
+}
+
 
 // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
