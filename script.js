@@ -5,20 +5,20 @@
 
 // WHEN I open the planner
 // THEN the current day is displayed at the top of the calendar
-// TODO: Add code to display the current date in the header of the page.
+
 var currentDayEl = $('#currentDay');
-currentDayEl.append(dayjs().format('dddd, MMMM D, YYYY Z a'));
+currentDayEl.append(dayjs().format('dddd, MMMM D, YYYY, HH:mm'));
 
-var saveBtnEL =$("saveBtn");
+var hours = dayjs().format("HH");
 
-var descriptionEl = $('description');
+var past = document.querySelector(".past");
+var present = document.querySelector(".present");
+var future = document.querySelector(".future");
 
-// descriptionEl.val() = [];
+var pastPresentFutureEL = document.querySelector(".hour");
 
-
-
-$(function schedule (event) {
-  // event.preventDefault();
+$(function () {
+  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -27,23 +27,43 @@ $(function schedule (event) {
   // useful when saving the description in local storage?
   //
 
-  var descriptionValue = $('input[description]').val();
-  descriptionValue.text();
-    event.preventDefault();
-  
-  // descriptionEl.data();
+  var textArea = document.querySelectorAll("textarea");
+
+  $(".saveBtn").on("click", saveEvent);
+
+  function saveEvent() {
+    let eventDescription = $(this).siblings(".description").val();
+    let eventTime = $(this).siblings(".hour").text();
+    localStorage.setItem(eventTime, eventDescription);
+  };
+// array of values// all the times up to 5pm
+  var keyArray = ["9AM","10AM", "11AM", "12PM","1PM","2PM","3PM","4PM","5pm"];
+  for (let index = 0; index < textArea.length; index++) {
+    textArea[index].value = localStorage.getItem(keyArray[index]);
+  };
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
+ 
+});
+ 
+for(var i = 0; i < pastPresentFutureEL.length; i++){
+
+if(pastPresentFutureEL.val === hours){
+  $(textArea.addClass(present));
+} 
+if else(pastPresentFutureEL.val < hours);{
+  $(textArea.addClass(past));
+}
+else(pastPresentFutureEL.val > hours);{
+ $(textArea.addClass(future));
+};
+};
+
+// TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-
-
-  saveBtnEL.on("click", schedule);
-});
- 
