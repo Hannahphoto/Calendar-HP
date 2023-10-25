@@ -55,10 +55,10 @@ for(var i = 0; i < pastPresentFutureEL.length; i++){
   if(val === hours){
   $(textArea[i].addClass(present));
   }
-  else if(pastPresentFutureEL.val < hours);{
+  else if(val < hours);{
   $(textArea[i].addClass(past)); 
   }
-  else(pastPresentFutureEL.val > hours);{
+  else (val > hours);{
   $(textArea[i].addClass(future));
   };
   };
