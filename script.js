@@ -11,12 +11,6 @@ currentDayEl.append(dayjs().format('dddd, MMMM D, YYYY, HH:mm'));
 
 var hours = dayjs().format("HH");
 
-var past = document.querySelector(".past");
-var present = document.querySelector(".present");
-var future = document.querySelector(".future");
-
-var pastPresentFutureEL = document.querySelector(".hour");
-
 $(function () {
   
   // TODO: Add a listener for click events on the save button. This code should
@@ -48,22 +42,30 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
  
-});
- 
-for(var i = 0; i < pastPresentFutureEL.length; i++){
 
-if(pastPresentFutureEL.val === hours){
-  $(textArea.addClass(present));
-} 
-if else(pastPresentFutureEL.val < hours);{
-  $(textArea.addClass(past));
-}
-else(pastPresentFutureEL.val > hours);{
- $(textArea.addClass(future));
-};
-};
+var past = document.querySelector(".past");
+var present = document.querySelector(".present");
+var future = document.querySelector(".future");
+
+var pastPresentFutureEL = document.querySelector(".row");
+var textArea = $("textarea");
+for(var i = 0; i < pastPresentFutureEL.length; i++){
+  var id = pastPresentFutureEL[i].attr("id");
+  var val = id.split("-")[1];
+  if(val === hours){
+  $(textArea[i].addClass(present));
+  }
+  else if(pastPresentFutureEL.val < hours);{
+  $(textArea[i].addClass(past)); 
+  }
+  else(pastPresentFutureEL.val > hours);{
+  $(textArea[i].addClass(future));
+  };
+  };
 
 // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+
+});
